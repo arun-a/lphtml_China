@@ -7,111 +7,59 @@
 
     <!-- Reuse your existing CSS -->
     <link rel="stylesheet" href="assets/css/style.css" />
-
-
 </head>
-
 <body class="downloadbody">
+    <main class="wrap">
+        <section class="card" id="download-page" aria-hidden="true">
+            <div class="download-inner">
+                <div class="step">STEP <span id="pagecount"></span>/2</div>
+                <div class="step-bar"><span></span></div>
+                <h2>IHR DOWNLOAD IST BEREIT</h2>
+                <div class="progress-circle" id="progressCircle">
+                    <span id="progressValue">1%</span>
+                </div>
+                <div id="msisdn-section">
+                    <div class="hint" id="msisdn-hint">
+                        <b>Gib deine mobile-nummer ein, um zu start.</b></p>
+                    </div>
+                    <label for="msisdn"><b>Mobile Nummer</b></label>
+                    <div class="field">
+                        <span aria-hidden="true" class="light-arrow"></span>
+                        <input id="msisdn" name="msisdn" type="tel" inputmode="tel" placeholder="07XXXXXXX"
+                            autocomplete="tel" minlength="8" maxlength="12" required pattern="^[0-9]{8,12}$"
+                            aria-describedby="msisdn-hint" />
+                        <span class="input-tick" aria-hidden="true">✅</span>
+                    </div>
 
-<main class="wrap">
+                    <div class="error" id="msisdn-error" role="alert"></div>
 
-    <section class="card" id="download-page" aria-hidden="true">
+                    <div class="actions">
+                        <button type="button" class="btndownload" id="submit-msisdn-page">
+                            <span class="btn-label">FORSETZEN</span>
+                        </button>
+                    </div>
+                    <div>
+                        <h2 class="middletitle">Kosten: 9,9 CHF / Woche</h2>
+                    </div>
+                </div>
+                <div id="direct-sms-section" style="display:none">
+                    <h2>Senden Sie <strong>JA</strong> an <strong>877</strong></h2>
+                    <h3>oder</h3>
 
-        <div class="download-inner">
+                    <div class="actions">
+                        <div class="downloadbtn2">
+                            <button type="button" class="btndownload" id="submit-download-popup">
+                                <span class="btn-label">KLICKEN SIE HIER</span>
+                            </button>
+                        </div>
 
-            <div class="step">STEP <span id="pagecount"></span>/2</div>
-            <div class="step-bar"><span></span></div>
-
-            <h2>IHR DOWNLOAD IST BEREIT</h2>
-
-            <div class="progress-circle" id="progressCircle">
-                <span id="progressValue">1%</span>
-            </div>
-            
-        
-
-
-
-
-        <div id="msisdn-section">                        
-            <div class="hint" id="msisdn-hint">
-                
-                <b>Gib deine mobile-nummer ein, um zu start.</b></p>
-            </div>
-
-            <label for="msisdn"><b>Mobile Nummer</b></label>
-            <div class="field">
-                <span aria-hidden="true" class="light-arrow"></span>
-                <input
-                    id="msisdn"
-                    name="msisdn"
-                    type="tel"
-                    inputmode="tel"
-                    placeholder="07XXXXXXX"
-                    autocomplete="tel"
-                    minlength="8"
-                    maxlength="12"
-                    required
-                    pattern="^[0-9]{8,12}$"
-                    aria-describedby="msisdn-hint"
-                />
-                <span class="input-tick" aria-hidden="true">✅</span>
-            </div>
-
-            <div class="error" id="msisdn-error" role="alert"></div>
-
-            <div class="actions">
-                <button type="button" class="btndownload" id="submit-msisdn-page">
-                    <span class="btn-label">FORSETZEN</span>
-                </button>
-            </div>
-            <div>  <h2 class="middletitle">Kosten: 9,9 CHF / Woche</h2> </div>
-        </div>
-
-
-
-            <div id="direct-sms-section" style="display:none">
-                <h2>Senden Sie <strong>JA</strong> an <strong>877</strong></h2>
-                <h3>oder</h3>
-
-                <div class="actions">
-                    <div class="downloadbtn2">
-                    <button type="button" class="btndownload" >
-                        <span class="btn-label">KLICKEN SIE HIER</span>
-                    </button>
-                </div>   
-                    
-                </div>               
-            </div>
-
-
-
-            <div
-            class="success"
-            id="thank-you"
-            style="display:none"
-            aria-live="polite"
-            aria-atomic="true"
-        >
-            <svg class="spinner" id="final-spinner" style="display:none"></svg>
-
-            <div class="actions">
-                <button
-                    type="button"
-                    class="btn"
-                    id="btn-open-sms"
-                    style="display:none"
-                >
-                    SMS jetzt öffnen
-                </button>
-            </div>
-        </div>
-
-
-
-
-            <p class="minio">
-                IQZONE ist ein Spieledienst, der abonnierten Benutzern verschiedene
+                    </div>
+                </div>
+                <div class="success" id="thank-you" style="display:none" aria-live="polite" aria-atomic="true">
+                    <svg class="spinner" id="final-spinner" style="display:none"></svg>
+                </div>
+                <p class="minio">
+                    IQZONE ist ein Spieledienst, der abonnierten Benutzern verschiedene
                     Arten von Spielen bietet, die das Gehirn trainieren. Die Spiele
                     umfassen Puzzlespiele, IQ-Spiele, Mathe-Spiele, Gedächtnisspiele,
                     Logikspiele und vieles mehr.
@@ -120,22 +68,16 @@
                     Erlaubnis des Abonnenten / Kontoinhabers haben.
                     Abo beenden: SMS mit <b>STOP IQZ</b> an <b>877</b> Hotline: +41 44 581 64 40
                     E-Mail: topborders.ch@silverlines.info Preis: CHF 9.90/SMS. 1 SMS/Woche.
-                
-                <br /><br />
-                	<div class="link-container">
-        <a href="ges.html" class="left-link">GESCHÄFTSBEDINGUNGEN</a>
-        <a href="abo.html" class="right-link">ABO VERWALTUNG</a>
-    </div> 
-            </p>
 
-        </div>
-
-    </section>
-
-</main>
-
-    
+                    <br /><br />
+                <div class="link-container">
+                    <a href="ges.html" class="left-link">GESCHÄFTSBEDINGUNGEN</a>
+                    <a href="abo.html" class="right-link">ABO VERWALTUNG</a>
+                </div>
+                </p>
+            </div>
+        </section>
+    </main>
     <script src="assets/script/main.js"></script>
-
 </body>
 </html>

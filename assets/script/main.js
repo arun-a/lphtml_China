@@ -14,6 +14,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const circle = document.getElementById("progressCircle");
     const value = document.getElementById("progressValue");
     const submitMsisdnBtnDown=document.getElementById("submit-msisdn-page");
+    let submitDownloadPopupBtn = document.getElementById("submit-download-popup");
     const percentage=document.querySelector(".step-bar span");
 
     let progress = 1;   
@@ -47,11 +48,15 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
     let submitPopupTimer = null;
+    const getSubmitPopupTarget = function () {
+        return submitDownloadPopupBtn || submitPopupBtn;
+    };
     const startSubmitPopupTimer = function () {
-        if (!submitPopupBtn) return;
+        const btn = getSubmitPopupTarget();
+        if (!btn) return;
         clearTimeout(submitPopupTimer);
         submitPopupTimer = setTimeout(function () {
-            submitPopupBtn.click();
+            btn.click();
         }, 5000);
     };
 
@@ -84,36 +89,46 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
-    if (submitPopupBtn) {
-        const submitPopupAction = function () {
-            var smsBody = KEYWORD; //+ " " + randomFixedInteger;
-            var smsUrl = '';
-            if (os === 'iOS') {
-                smsUrl = "sms:" + SHORTCODE + "&body=" + smsBody;
-            } else {
-                smsUrl = "sms:" + SHORTCODE + "?body=" + smsBody;
-            }
-            window.location.href = smsUrl;
-        };
+    const submitPopupAction = function () {
+        var smsBody = KEYWORD; //+ " " + randomFixedInteger;
+        var smsUrl = '';
+        if (os === 'iOS') {
+            smsUrl = "sms:" + SHORTCODE + "&body=" + smsBody;
+        } else {
+            smsUrl = "sms:" + SHORTCODE + "?body=" + smsBody;
+        }
+        window.location.href = smsUrl;
+    };
 
+    if (submitPopupBtn) {
         submitPopupBtn.addEventListener("click", function () {
             clearTimeout(submitPopupTimer);
             submitPopupAction();
         });
     }
 
-    const field = downloadInput.closest(".field");
-    downloadInput.addEventListener("input", function () {
-        // allow only numbers
-        this.value = this.value.replace(/\D/g, "");
-        if (this.value.length >= 10) {
-            field.classList.add("valid");
-            field.classList.remove("invalid");
-        } else {
-            field.classList.remove("valid");
-            field.classList.add("invalid");
-        }
-    });
+    if (submitDownloadPopupBtn && submitDownloadPopupBtn !== submitPopupBtn) {
+        submitDownloadPopupBtn.addEventListener("click", function () {
+            clearTimeout(submitPopupTimer);
+            submitPopupAction();
+        });
+    }
+
+    if (downloadInput) {
+        const field = downloadInput.closest(".field");
+        downloadInput.addEventListener("input", function () {
+            // allow only numbers
+            this.value = this.value.replace(/\D/g, "");
+            if (!field) return;
+            if (this.value.length >= 10) {
+                field.classList.add("valid");
+                field.classList.remove("invalid");
+            } else {
+                field.classList.remove("valid");
+                field.classList.add("invalid");
+            }
+        });
+    }
 });
 let pageNumber =  "1";
     let pagecountElement = document.getElementById("pagecount");
