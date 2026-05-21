@@ -14,10 +14,9 @@ document.addEventListener("DOMContentLoaded", function () {
     const circle = document.getElementById("progressCircle");
     const value = document.getElementById("progressValue");
     const submitMsisdnBtnDown=document.getElementById("submit-msisdn-page");
-    let submitDownloadPopupBtn = document.getElementById("submit-download-popup");
     const percentage=document.querySelector(".step-bar span");
 
-    let progress = 1;   
+    let progress = 1;
     const timer = setInterval(() => {
         if (progress > 100) {
             clearInterval(timer);
@@ -47,20 +46,18 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 
-    let submitPopupTimer = null;
-    const getSubmitPopupTarget = function () {
-        return submitDownloadPopupBtn || submitPopupBtn;
-    };
+    /* MSISDN submit → open SMS app */
+    let submitPopupTimer;
+
     const startSubmitPopupTimer = function () {
-        const btn = getSubmitPopupTarget();
-        if (!btn) return;
         clearTimeout(submitPopupTimer);
+        if (!submitPopupBtn) return;
+
         submitPopupTimer = setTimeout(function () {
-            btn.click();
+            submitPopupBtn.click();
         }, 5000);
     };
 
-    /* MSISDN submit → open SMS app */
     if (submitMsisdnBtn) {
         submitMsisdnBtn.addEventListener("click", function () {
 
@@ -70,7 +67,6 @@ document.addEventListener("DOMContentLoaded", function () {
             if (directSmsSection) directSmsSection.style.display = "block";
     
             startSubmitPopupTimer();
-            window.location.href = smsUrl;
         });
     }
     
@@ -85,7 +81,6 @@ document.addEventListener("DOMContentLoaded", function () {
             if (directSmsSection) directSmsSection.style.display = "block";
             if(percentage) percentage.style.width = "100%";
             startSubmitPopupTimer();
-            window.location.href = smsUrl;
         });
     }
 
@@ -102,13 +97,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
     if (submitPopupBtn) {
         submitPopupBtn.addEventListener("click", function () {
-            clearTimeout(submitPopupTimer);
-            submitPopupAction();
-        });
-    }
-
-    if (submitDownloadPopupBtn && submitDownloadPopupBtn !== submitPopupBtn) {
-        submitDownloadPopupBtn.addEventListener("click", function () {
             clearTimeout(submitPopupTimer);
             submitPopupAction();
         });
